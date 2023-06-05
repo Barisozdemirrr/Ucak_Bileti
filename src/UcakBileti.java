@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class UcakBileti {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int km , yas,yolculukTipi;
-        double indirimsizFiyat,cocukIndirim=0.50,gencIndirim=0.10,yasliIndirim=0.30,gdIndirim=0.20,perKm=0.10,
-                yasIndirimi,indirimliTutar,gitGelIndirim,toplamTutar,toplamIndirim;
+        boolean isYasSuccess = false, isKmSuccess = false;
+        int km = 0, yas = 0, yolculukTipi;
+        double indirimsizFiyat, cocukIndirim = 0.50, gencIndirim = 0.10, yasliIndirim = 0.30, gdIndirim = 0.20, perKm = 0.10,
+                yasIndirimi, indirimliTutar, gitGelIndirim, toplamTutar, toplamIndirim;
 
         System.out.println("""
                 12 yas ve altına %50 indirim
@@ -13,23 +14,35 @@ public class UcakBileti {
                 65 yas ve uzeri icin %30
                 Cift yonlu uçuslarda ise %20 indirim uygulanir.\s""");
 
-        System.out.println("Lütfen Yasinizi Giriniz : ");
-        yas = input.nextInt();
-        if(yas<0){
-            System.out.println("Hatali Tuslama Yaptiniz");
-            System.exit(0);
+        while (!isYasSuccess) {
+            System.out.println("Lütfen Yasinizi Giriniz : ");
+
+            yas = input.nextInt();
+            if (yas > 0) {
+                isYasSuccess = true;
+            } else {
+                System.out.println("Hatali Tuslama Yaptiniz");
+
+            }
         }
-        System.out.println("Lütfen Mesafeyi Km cinsinden giriniz : ");
-        km = input.nextInt();
-        if(km<0){
-            System.out.println("Hatali Tuslama Yaptiniz");
-            System.exit(0);
+        while (!isKmSuccess) {
+            System.out.println("Lütfen Mesafeyi Km cinsinden giriniz : ");
+            km = input.nextInt();
+            if (km > 0) {
+                isKmSuccess = true;
+
+            } else {
+                System.out.println("Hatali Tuslama Yaptiniz");
+
+            }
         }
+
+
         System.out.println("Lütfen Yolculuk Tipini Giriniz : 1 => Tek Yon , 2 => Gidis Donus");
         yolculukTipi = input.nextInt();
 
 
-        indirimsizFiyat=km*perKm;
+        indirimsizFiyat = km * perKm;
 
         switch (yolculukTipi) {
             case 1 -> {
@@ -94,4 +107,5 @@ public class UcakBileti {
         }
 
 
-        }}
+    }
+}
